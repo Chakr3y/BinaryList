@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.List;
+import java.util.AbstractList;
 import java.util.ListIterator;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ListIterator;
  * 
  * Some javadoc is derived from Java's List/ArrayList implementation.
  */
-public class BinaryList implements List<Boolean> {
+public class BinaryList extends AbstractList<Boolean> {
     // Integer value that stores the list of bits in binary.
     int list;
     // Number of elements in the list.
@@ -60,6 +61,15 @@ public class BinaryList implements List<Boolean> {
 
         this.list = Integer.parseInt(list, 2);
         this.size = list.length();
+    }
+
+    /**
+     * Collection constructor, as per specification of AbstractList
+     * @param c
+     */
+    public BinaryList(Collection<? extends Boolean> c) {
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     public int value() {
@@ -275,20 +285,8 @@ public class BinaryList implements List<Boolean> {
             BinaryList other = (BinaryList) obj;
             return size == other.size() && value() == other.value();
         } else {
-            return equalsRange((List<?>) obj, 0, size);
+            return super.equals(obj);
         }
-    }
-    
-    /**
-     * Taken from ArrayList implementation
-     */
-    boolean equalsRange(List<?> other, int from, int to) {
-        var oit = other.iterator();
-        for (; from < to; from++) {
-            if (!oit.hasNext() || !Objects.equals(get(from), oit.next()))
-                return false;
-        }
-        return !oit.hasNext();
     }
 
     @Override
@@ -338,142 +336,43 @@ public class BinaryList implements List<Boolean> {
         return new BinaryList(list, size);
     }
 
-    @Override
-    public Iterator<Boolean> iterator() {
-        return new BinaryIterator();
-    }
+    // @Override
+    // public Iterator<Boolean> iterator() {
+    //     return new BinaryIterator();
+    // }
 
-    class BinaryIterator implements Iterator<Boolean> {
-        int copy;
-        int i;
-        BinaryIterator() {
-            copy = list;
-            i = size;
-        }
+    // class BinaryIterator implements Iterator<Boolean> {
+    //     int copy;
+    //     int i;
+    //     BinaryIterator() {
+    //         copy = list;
+    //         i = size;
+    //     }
 
-        @Override
-        public boolean hasNext() {
-            return i != 0;
-        }
+    //     @Override
+    //     public boolean hasNext() {
+    //         return i != 0;
+    //     }
 
-        @Override
-        public Boolean next() {
-            if (i < 1) throw new NoSuchElementException();;
+    //     @Override
+    //     public Boolean next() {
+    //         if (i < 1) throw new NoSuchElementException();;
 
-            i--;
-            int n = copy % 2;
-            copy >>>= 1;
-            return n != 0;
-        }
-    }
+    //         i--;
+    //         int n = copy % 2;
+    //         copy >>>= 1;
+    //         return n != 0;
+    //     }
+    // }
 
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /**
-     * Unimplemented
-     */
-    @Override
-    public boolean contains(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'containsAll'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public boolean addAll(Collection<? extends Boolean> c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAll'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public boolean addAll(int index, Collection<? extends Boolean> c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAll'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeAll'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retainAll'");
-    }
-
     @Override
     public void clear() {
         list = 0;
         size = 0;
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public int indexOf(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'indexOf'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public int lastIndexOf(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lastIndexOf'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public ListIterator<Boolean> listIterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public ListIterator<Boolean> listIterator(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
-    }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public List<Boolean> subList(int fromIndex, int toIndex) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'subList'");
     }
 }

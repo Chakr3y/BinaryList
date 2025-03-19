@@ -1,0 +1,1 @@
+A `List<Boolean>` implementation using an integer primitive to store data.
