@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Arrays;
 
 @SuppressWarnings("unused")
 public class BinaryListTest {
@@ -57,10 +59,14 @@ public class BinaryListTest {
         assertNotEquals(new BinaryList(), null);
         
         // equals other BinaryList
-        
+        BinaryList b1 = new BinaryList(5);
+        BinaryList b2 = new BinaryList(1, 2); b2.add(1);
+        assertEquals(b1, b2);
         
         // equals non-BinaryList
-        
+        List<Boolean> l1 = Arrays.asList(true, false, true);
+        assertEquals(b1, l1);
+        assertEquals(l1, b1);
     }
 
     @Test
