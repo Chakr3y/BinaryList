@@ -1,4 +1,4 @@
-package main.java;
+package com.github.Chakr3y;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
