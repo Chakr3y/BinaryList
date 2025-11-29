@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.List;
 import java.util.AbstractList;
 import java.util.ListIterator;
+import java.util.BitSet;
 
 /**
  * An implementation of List<Boolean> by using binary integer.
