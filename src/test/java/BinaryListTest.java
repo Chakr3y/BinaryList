@@ -1,5 +1,7 @@
-package BinaryList;
+package test.java;
 import org.junit.Test;
+
+import main.java.BinaryList;
 
 import static org.junit.Assert.*;
 

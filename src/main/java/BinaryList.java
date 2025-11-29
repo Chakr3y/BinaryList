@@ -1,4 +1,4 @@
-package BinaryList;
+package main.java;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
